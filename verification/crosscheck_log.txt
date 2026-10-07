@@ -1,0 +1,20 @@
+(1885, 2)
+literal notebook exec, intr_var_mean (C/10, C/5, C/2):
+  SOH 0.9: notebook ['0.0234921706', '0.0372637039', '0.0338688485']  mine ['0.0234921706', '0.0372637039', '0.0338688485']
+  SOH 0.875: notebook ['0.0288521347', '0.0398276325', '0.0212351369']  mine ['0.0288521347', '0.0398276325', '0.0212351369']
+  SOH 0.85: notebook ['0.0312419036', '0.0249438664', '0.0488818834']  mine ['0.0312419036', '0.0249438664', '0.0488818834']
+  max |notebook - mine| = 0.0
+  Co10: 13 protocols; same set as mine: True
+  Co5: 9 protocols; same set as mine: True
+  Co2: 6 protocols; same set as mine: True
+  allSOHs table identical to mine (max abs diff): 0.0
+  cell_077 SOH 0.9: notebook grid value 746.7  first-crossing on same series 746.665
+  cell_077 SOH 0.875: notebook grid value 1033.0  first-crossing on same series 1033.034
+  cell_077 SOH 0.85: notebook grid value 1188.7  first-crossing on same series 1188.695
+  cell_085 SOH 0.9: notebook grid value 737.4  first-crossing on same series 737.416
+  cell_085 SOH 0.875: notebook grid value 1070.1  first-crossing on same series 1070.068
+  cell_085 SOH 0.85: notebook grid value 1221.6  first-crossing on same series 1221.621
+  Fig2c if the primary filter replaced the notebook filter: {'C/10': [0.023492, 0.028852, 0.031242], 'C/5': [0.037264, 0.039828, 0.024944], 'C/2': [0.033869, 0.021235, 0.032098]}
+(b) max |lifetime - np.interp| over all cells and thresholds: 2.2737367544323206e-13
+(c) N=8: median shortfall over 10,000,000 modules (seed 777) = 4.11602%
+(c) N=96: median shortfall over 10,000,000 modules (seed 778) = 10.16171%

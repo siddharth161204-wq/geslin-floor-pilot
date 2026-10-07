@@ -1,0 +1,24 @@
+numpy 2.5.3 pandas 3.0.5
+pairs 45 singles ['CC_(no_storage)_Co2', 'Synthetic_2c_Co5']
+s=0.9: n_both=45 mean=2.990998% median=1.745705% p95=8.717632% max=14.723849% (Periodic_E_Co5) sigma=2.650703%
+   missing: []
+s=0.85: n_both=43 mean=2.720348% median=1.663629% p95=9.744399% max=13.160084% (Drive_City1_Co10) sigma=2.410846%
+   missing: [('Drive_City1_Co16', 'cell_089', 'cell_090', 917.1738022493357, nan), ('Drive_City2_Co16', 'cell_093', 'cell_094', nan, nan)]
+worst-of-8 median shortfall 4.116053% (SE 0.00092)  worst-of-96 10.161808% (SE 0.00025)  (seeds 20261007,20261008, 10000000 modules)
+   other seeds N8: ['4.1131', '4.1201', '4.1213', '4.1148', '4.1212'] N96: ['10.1629', '10.1624', '10.1614', '10.1610', '10.1619']
+within-pair share at 0.90: 0.029887  (W=307.669, T=10294.392)
+estimator dependence: 36/45 = 0.800000; alt reading 36/45; min verdicts per pair 11
+top5 at 0.90:
+   Periodic_E_Co5               cell_051 cell_052 L=(514.277,596.016) d=14.723849%
+   Synthetic_2b_Co2             cell_077 cell_078 L=(746.665,670.080) d=10.811401%
+   Synthetic_2b_Co10            cell_073 cell_074 L=(426.925,466.229) d=8.801318%
+   Drive_City2_Co16             cell_093 cell_094 L=(511.366,556.108) d=8.382889%
+   Periodic_D_Co5               cell_039 cell_040 L=(577.515,624.059) d=7.747107%
+fig2c reimplementation:
+   C/10: n_prot=13 0.90=0.02349217 0.875=0.02885213 0.85=0.03124190  nonnan=13,13,13  one-nan-as-0=0,0,0
+   C/5: n_prot=9 0.90=0.03726370 0.875=0.03982763 0.85=0.02494387  nonnan=9,9,9  one-nan-as-0=0,0,0
+   C/2: n_prot=6 0.90=0.03386885 0.875=0.02123514 0.85=0.04888188  nonnan=6,6,6  one-nan-as-0=0,0,0
+   notebook-filter non-monotone cells: ['cell_077', 'cell_085']
+   protocols with one NaN cell on grid: {'Drive_City1_Co16': (0.85, 0.855, 2), 'Drive_City2_Co16': (0.855, 0.86, 2)}
+alt_B {'0.9': (45, 4.331, 2.04, 14.28, 22.756, 'Synthetic_2c_Co10'), '0.85': (43, 3.203, 2.003, 10.454, 13.16, 'Drive_City1_Co10')} dep 36
+alt_NB {'0.9': (45, 2.991, 1.746, 8.718, 14.724, 'Periodic_E_Co5'), '0.85': (43, 2.955, 1.664, 10.454, 13.16, 'Drive_City1_Co10')} dep 36

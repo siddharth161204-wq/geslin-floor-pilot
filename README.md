@@ -8,6 +8,25 @@ Author: Siddharth Satte.
 
 The predictions in [predictions.md](predictions.md) were committed before the analysis was run, in commit `409eba9326fbfc0fbcc5b81aba4c044b1fd54a21`, and pushed to this repository before the script was run on the data; the tag and pre-release `pre-registration` mark that commit. The analysis script in that commit is the one that produced the results. The first commit of this repository holds the 7 October 2026 draft of the script; every change between it and the pre-registered version is listed below, and all were made before any result was computed.
 
+## Results
+
+The one-page note is [NOTE.md](NOTE.md) (also [NOTE.pdf](NOTE.pdf)); every number is in [results/results.json](results/results.json).
+
+- 8.7 %: the 95th percentile of the lifetime difference between duplicate cells at 90 % SOH (percentile bootstrap over pairs, 5.7 to 13.9 %). The mean is 3.0 % and the median 1.7 %; 9 of 45 pairs differ by more than 5 %.
+- 4.1 %: the median shortfall of the worst of eight nominally identical cells below the module mean lifetime, by selection alone, at 90 % SOH (2.8 to 5.6 %); the normal model gives 3.6 %.
+- All nine scored predictions held; the tail was heavier than predicted. The scorecard is in the note.
+
+### Gates, checks and reconciliation
+
+- Gates on the processing passed: 45 pairs at 90 % and 43 at 85 % SOH; the pair differences equal those of the paper's notebook processing within 0.0002 for every pair except Synthetic_2c_Co2 at 85 % SOH, which contains cell_085. There the notebook's single pass keeps three points of cell_085 that a later diagnostic exceeds, and the pair difference moves by 0.10.
+- The paper's Fig. 2c group averages, recomputed with its own notebook code, are all below 5 % (largest 4.89 %, C/2 at 85 % SOH; 3.21 % with the monotone filter), as the paper states. The ratio of the range of the duplicate differences to the protocol spread is at most 0.50 at 87.5 and 85 % SOH, as the paper states for SOH beyond 90 %, and 0.53 (C/5) and 0.59 (C/2) at 90 % SOH itself.
+- The within-pair share of lifetime variance at 90 % SOH is 3.0 %, against 97.0 % between protocols.
+- Found while reconciling, not pre-registered: the authors' file of lifetimes at 90 % SOH (`eol_metrics_soh0.9.pkl`) agrees with this pilot's lifetimes within 1 % for 88 of 92 cells. The other four (cell_035, cell_043, cell_075, cell_081) sit at the first crossing of the threshold on the unfiltered curve, up to 95 EFC earlier. With that file the pair difference at 90 % SOH has mean 3.8 %, 95th percentile 10.8 % and maximum 23.1 %.
+- Sensitivity: S1 (the notebook's processing) is identical at 90 % SOH and gives a mean of 2.95 % and a 95th percentile of 10.46 % at 85 % SOH; S2 (without the C/16 drive protocols) gives a 95th percentile at 90 % SOH of 8.70 % and a worst-of-8 median of 3.88 %; S3 (the authors' analysis set, 42 pairs) gives 8.75 % and 3.82 %.
+- An independent implementation in [verification/](verification/) reproduces every deterministic number exactly and the simulated ones to Monte Carlo precision.
+
+There were no deviations from the pre-registered plan in the processing or the scoring. The run used Python 3.13.16, numpy 2.5.3, pandas 3.0.5 and matplotlib 3.11.2 (recorded in `results/results.json`).
+
 ## Data
 
 The data are not redistributed here. The script reads the processed per-cell files that the paper's authors released in their code repository, https://github.com/geslina/dynamic_cycling_Nature_Energy_2024, at commit `5b2f7f04d05072fe1f9bd8af664f23eadbde6317`: `data/metadata.pkl` (cell, protocol, protocol type and variant, nominal and measured average C-rate) and `data/diagnostic_features_all.pkl` (C/2 discharge capacity, normalised, and EFC at each diagnostic). The reconciliation also reads `data/eol_metrics_soh0.9.pkl`. Expected SHA-256:
