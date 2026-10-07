@@ -6,7 +6,7 @@ Author: Siddharth Satte.
 
 ## Pre-registration
 
-The predictions in [predictions.md](predictions.md) were committed before the analysis was run, in commit `PREREG_COMMIT` (tagged `pre-registration`). The analysis script in that commit is the one that produced the results. The first commit of this repository holds the 7 October 2026 draft of the script; every change between it and the pre-registered version is listed below, and all were made before any result was computed.
+The predictions in [predictions.md](predictions.md) were committed before the analysis was run, in commit `409eba9326fbfc0fbcc5b81aba4c044b1fd54a21`, and pushed to this repository before the script was run on the data; the tag and pre-release `pre-registration` mark that commit. The analysis script in that commit is the one that produced the results. The first commit of this repository holds the 7 October 2026 draft of the script; every change between it and the pre-registered version is listed below, and all were made before any result was computed.
 
 ## Data
 
