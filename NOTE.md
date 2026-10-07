@@ -21,7 +21,7 @@ The average pair difference at 90 % SOH is 3.0 % (median 1.7 %), consistent with
 3. Pair difference: |EFC_a - EFC_b| divided by the pair mean at the same threshold; the per-cell noise sigma is the mean difference times sqrt(pi)/2, which is 2.65 % at 90 % SOH.
 4. Worst of N: simulated modules of N cells whose deviations are resampled from the 90 pair deviations (half the difference, either sign, times sqrt 2) or drawn from a normal with that sigma; the shortfall is (mean minus minimum) over mean.
 5. Checks: twelve lifetime and fade-rate estimators per cell; the variance split within pairs and between protocols; the paper's Fig. 2c recomputed with its own code; a second, independent implementation agrees to the last digit.
-6. Pre-registration: seven predictions with bands were committed (409eba9) and pushed before the analysis ran; code, input hashes and results are at github.com/siddharth161204-wq/geslin-floor-pilot.
+6. Pre-registration: seven predictions with bands were committed (409eba9) and pushed before the analysis ran; code, input hashes and results are at github.com/siddharth161204-wq/geslin-floor-pilot, archived as doi.org/10.5281/zenodo.23205413.
 
 ## Limits
 

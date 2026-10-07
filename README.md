@@ -2,7 +2,7 @@
 
 How far apart do nominally identical lithium-ion cells drift in lifetime under one protocol at one temperature, by chance alone? Geslin et al. (Nature Energy, 2025) cycled 92 commercial SiOx-graphite/NCA cells under 47 protocols at 35 °C, each protocol on two cells, and report that the average lifetime difference between duplicates is below 5 %. A floor is a tail, not an average. This repository measures the distribution of the duplicate difference and converts it into a selection-only floor: how far below the module mean the worst of N identical cells falls by chance. A thermal explanation of cell-to-cell lifetime divergence in a module has to exceed this floor.
 
-Author: Siddharth Satte.
+Author: Siddharth Satte. Archived at https://doi.org/10.5281/zenodo.23205413.
 
 ## Pre-registration
 
@@ -85,6 +85,12 @@ The two cells whose duplicate failed, cell_017 (CC, no rest, C/2) and cell_084 (
 6. A2. The interval for sigma from the median and sigma from the root mean square (without an interval) are added; the draft already reported sigma from the mean and the median.
 7. Added: tail diagnostics; percentile-bootstrap intervals over pairs for the headline numbers; the variance split on logarithmic lifetimes as a secondary measure; the reconciliation; sensitivity runs S1 to S3; input hashes checked before loading and package versions recorded; the exact-name whitelist loader; a check that EFC increases strictly in every cell; non-finite values written to JSON as null; the normal model drawn in the figure next to the resampled one.
 8. Added `tests/synthetic_check.py`.
+
+## Citation
+
+Satte, S. (2026). Pilot A: the cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.23205413
+
+The archived version is the GitHub release v1.0.0 of this repository. Please also cite the Geslin et al. paper and dataset listed below.
 
 ## Licence
 
