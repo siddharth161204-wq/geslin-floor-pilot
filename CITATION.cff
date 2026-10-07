@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+message: "If you use this analysis, please cite it as below, together with the Geslin et al. paper and dataset."
+title: "Pilot A: the cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset"
+authors:
+  - family-names: Satte
+    given-names: Siddharth
+    affiliation: Independent Researcher
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/siddharth161204-wq/geslin-floor-pilot"
+keywords:
+  - lithium-ion battery
+  - cell-to-cell variability
+  - battery lifetime
+  - duplicate cells
+  - order statistics
+  - pre-registration
+references:
+  - type: article
+    title: "Dynamic cycling enhances battery lifetime"
+    authors:
+      - family-names: Geslin
+        given-names: Alexis
+      - family-names: Xu
+        given-names: Le
+      - family-names: Ganapathi
+        given-names: Devi
+      - family-names: Moy
+        given-names: Kevin
+      - family-names: Chueh
+        given-names: William C.
+      - family-names: Onori
+        given-names: Simona
+    journal: "Nature Energy"
+    volume: 10
+    start: 172
+    end: 180
+    year: 2025
+    doi: 10.1038/s41560-024-01675-8
+  - type: dataset
+    title: "Dataset - Dynamic cycling enhances battery lifetime"
+    authors:
+      - family-names: Geslin
+        given-names: Alexis
+      - family-names: Xu
+        given-names: Le
+      - family-names: Ganapathi
+        given-names: Devi
+      - family-names: Moy
+        given-names: Kevin
+      - family-names: Chueh
+        given-names: William
+      - family-names: Onori
+        given-names: Simona
+    publisher:
+      name: "Stanford Digital Repository"
+    year: 2024
+    doi: 10.25740/td676xr4322
+    license: CC-BY-4.0

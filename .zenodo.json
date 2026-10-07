@@ -1,0 +1,16 @@
+{
+  "title": "Pilot A: the cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset",
+  "upload_type": "software",
+  "creators": [
+    {"name": "Satte, Siddharth", "affiliation": "Independent Researcher"}
+  ],
+  "description": "Pre-registered re-analysis of the duplicate-cell pairs in the dynamic-cycling dataset of Geslin et al. (Nature Energy 10, 172-180, 2025): the distribution of the relative lifetime difference between nominally identical cells cycled under the same protocol at 35 C, the per-cell lifetime noise it implies, and the selection-only shortfall of the worst of N identical cells. Predictions were committed before the analysis ran. Code under the MIT licence; results, figure and note under CC BY 4.0. The data are not included; they are available from the authors' repository and the Stanford Digital Repository (CC BY 4.0).",
+  "license": "MIT",
+  "version": "1.0.0",
+  "keywords": ["lithium-ion battery", "cell-to-cell variability", "battery lifetime", "duplicate cells", "order statistics", "pre-registration"],
+  "related_identifiers": [
+    {"identifier": "10.25740/td676xr4322", "relation": "isDerivedFrom", "scheme": "doi", "resource_type": "dataset"},
+    {"identifier": "10.1038/s41560-024-01675-8", "relation": "references", "scheme": "doi", "resource_type": "publication-article"},
+    {"identifier": "https://github.com/geslina/dynamic_cycling_Nature_Energy_2024", "relation": "isDerivedFrom", "scheme": "url", "resource_type": "software"}
+  ]
+}
