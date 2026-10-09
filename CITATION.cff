@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this analysis, please cite it as below, together with the Geslin et al. paper and dataset."
-title: "Pilot A: the cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset"
+title: "The cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset"
 authors:
   - family-names: Satte
     given-names: Siddharth
     affiliation: Independent Researcher
-version: 1.0.0
+version: 1.0.1
 doi: 10.5281/zenodo.23205413
-date-released: 2026-10-07
+date-released: 2026-10-09
 license: MIT
 repository-code: "https://github.com/siddharth161204-wq/geslin-floor-pilot"
 keywords:

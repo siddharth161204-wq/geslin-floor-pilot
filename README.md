@@ -1,4 +1,4 @@
-# Pilot A: the cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset
+# The cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset
 
 How far apart do nominally identical lithium-ion cells drift in lifetime under one protocol at one temperature, by chance alone? Geslin et al. (Nature Energy, 2025) cycled 92 commercial SiOx-graphite/NCA cells under 47 protocols at 35 °C, each protocol on two cells, and report that the average lifetime difference between duplicates is below 5 %. A floor is a tail, not an average. This repository measures the distribution of the duplicate difference and converts it into a selection-only floor: how far below the module mean the worst of N identical cells falls by chance. A thermal explanation of cell-to-cell lifetime divergence in a module has to exceed this floor.
 
@@ -7,6 +7,8 @@ Author: Siddharth Satte. Archived at https://doi.org/10.5281/zenodo.23205413.
 ## Pre-registration
 
 The predictions in [predictions.md](predictions.md) were committed before the analysis was run, in commit `409eba9326fbfc0fbcc5b81aba4c044b1fd54a21`, and pushed to this repository before the script was run on the data; the tag and pre-release `pre-registration` mark that commit. The analysis script in that commit is the one that produced the results. The first commit of this repository holds the 7 October 2026 draft of the script; every change between it and the pre-registered version is listed below, and all were made before any result was computed.
+
+Release v1.0.1 changes names only: the working label used while the study was being planned was removed, and the analysis script and its figure were renamed. The file predictions.md differs from the pre-registered one only where it used that label or named the script (the title, the opening paragraph and the second gate); no definition, prediction, band or rule changed, and the tag `pre-registration` holds the original files. Rerunning the renamed script reproduces every file in `results/` byte for byte.
 
 ## Results
 
@@ -21,7 +23,7 @@ The one-page note is [NOTE.md](NOTE.md) (also [NOTE.pdf](NOTE.pdf)); every numbe
 - Gates on the processing passed: 45 pairs at 90 % and 43 at 85 % SOH; the pair differences equal those of the paper's notebook processing within 0.0002 for every pair except Synthetic_2c_Co2 at 85 % SOH, which contains cell_085. There the notebook's single pass keeps three points of cell_085 that a later diagnostic exceeds, and the pair difference moves by 0.10.
 - The paper's Fig. 2c group averages, recomputed with its own notebook code, are all below 5 % (largest 4.89 %, C/2 at 85 % SOH; 3.21 % with the monotone filter), as the paper states. The ratio of the range of the duplicate differences to the protocol spread is at most 0.50 at 87.5 and 85 % SOH, as the paper states for SOH beyond 90 %, and 0.53 (C/5) and 0.59 (C/2) at 90 % SOH itself.
 - The within-pair share of lifetime variance at 90 % SOH is 3.0 %, against 97.0 % between protocols.
-- Found while reconciling, not pre-registered: the authors' file of lifetimes at 90 % SOH (`eol_metrics_soh0.9.pkl`) agrees with this pilot's lifetimes within 1 % for 88 of 92 cells. The other four (cell_035, cell_043, cell_075, cell_081) sit at the first crossing of the threshold on the unfiltered curve, up to 95 EFC earlier. With that file the pair difference at 90 % SOH has mean 3.8 %, 95th percentile 10.8 % and maximum 23.1 %.
+- Found while reconciling, not pre-registered: the authors' file of lifetimes at 90 % SOH (`eol_metrics_soh0.9.pkl`) agrees with the lifetimes computed here within 1 % for 88 of 92 cells. The other four (cell_035, cell_043, cell_075, cell_081) sit at the first crossing of the threshold on the unfiltered curve, up to 95 EFC earlier. With that file the pair difference at 90 % SOH has mean 3.8 %, 95th percentile 10.8 % and maximum 23.1 %.
 - Sensitivity: S1 (the notebook's processing) is identical at 90 % SOH and gives a mean of 2.95 % and a 95th percentile of 10.46 % at 85 % SOH; S2 (without the C/16 drive protocols) gives a 95th percentile at 90 % SOH of 8.70 % and a worst-of-8 median of 3.88 %; S3 (the authors' analysis set, 42 pairs) gives 8.75 % and 3.82 %.
 - An independent implementation in [verification/](verification/) reproduces every deterministic number exactly and the simulated ones to Monte Carlo precision.
 
@@ -45,7 +47,7 @@ The script checks these hashes before it unpickles anything and stops on a misma
 git clone https://github.com/geslina/dynamic_cycling_Nature_Energy_2024
 git -C dynamic_cycling_Nature_Energy_2024 checkout 5b2f7f04d05072fe1f9bd8af664f23eadbde6317
 python3 -m pip install numpy pandas matplotlib
-python3 pilot_a_floor.py --data dynamic_cycling_Nature_Energy_2024/data --out results --upstream-commit 5b2f7f04d05072fe1f9bd8af664f23eadbde6317
+python3 lifetime_floor.py --data dynamic_cycling_Nature_Energy_2024/data --out results --upstream-commit 5b2f7f04d05072fe1f9bd8af664f23eadbde6317
 python3 tests/synthetic_check.py --data dynamic_cycling_Nature_Energy_2024/data
 ```
 
@@ -63,7 +65,7 @@ The last command runs the script on synthetic trajectories with known noise buil
 - R: the reconciliation with the paper's Fig. 2c and with its file of lifetimes at 90 % SOH.
 - S1 to S3: the sensitivity runs described below.
 
-The CSV files hold the per-cell estimators, the pair differences, the worse-cell agreement matrix and the per-pair ratio ranges; `pilot_a_floor.png` is the figure.
+The CSV files hold the per-cell estimators, the pair differences, the worse-cell agreement matrix and the per-pair ratio ranges; `lifetime_floor.png` is the figure.
 
 ## Processing
 
@@ -88,9 +90,9 @@ The two cells whose duplicate failed, cell_017 (CC, no rest, C/2) and cell_084 (
 
 ## Citation
 
-Satte, S. (2026). Pilot A: the cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.23205413
+Satte, S. (2026). The cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.23205413
 
-The archived version is the GitHub release v1.0.0 of this repository. Please also cite the Geslin et al. paper and dataset listed below.
+The archived version is the GitHub release v1.0.1 of this repository. Please also cite the Geslin et al. paper and dataset listed below.
 
 ## Licence
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pilot A: the cell-to-cell floor in the Geslin et al. (Nature Energy 2025) dataset.
+The cell-to-cell lifetime floor in the Geslin et al. (Nature Energy 2025) dataset.
 
 What it computes, from the processed per-cell diagnostics released with the paper
 (github.com/geslina/dynamic_cycling_Nature_Energy_2024, data/):
@@ -42,7 +42,7 @@ against the released files before anything is unpickled, and the pickles are loa
 whitelist of the exact pandas and numpy constructors they use; any other global is refused.
 
 Usage:
-  python3 pilot_a_floor.py --data /path/to/dynamic_cycling_Nature_Energy_2024/data --out results
+  python3 lifetime_floor.py --data /path/to/dynamic_cycling_Nature_Energy_2024/data --out results
 """
 import argparse
 import hashlib
@@ -791,7 +791,7 @@ def main():
         json.dump(clean(results), f, indent=2, allow_nan=False)
 
     try:
-        make_figure(pt, a3, os.path.join(args.out, "pilot_a_floor.png"))
+        make_figure(pt, a3, os.path.join(args.out, "lifetime_floor.png"))
     except Exception as ex:  # the figure is optional; the numbers are not
         with open(os.path.join(args.out, "figure_error.txt"), "w") as f:
             f.write(repr(ex))

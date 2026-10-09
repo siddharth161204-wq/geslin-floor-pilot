@@ -1,12 +1,12 @@
 # The cell-to-cell lifetime floor in the Geslin et al. dynamic-cycling dataset
 
-Pilot A, pre-registered. Siddharth Satte. A re-analysis of the 45 duplicate pairs in Geslin, Xu, Ganapathi, Moy, Chueh and Onori, Nature Energy 10, 172-180 (2025), from the data and code the authors released (dataset doi.org/10.25740/td676xr4322, CC BY 4.0).
+Siddharth Satte. A pre-registered re-analysis of the 45 duplicate pairs in Geslin, Xu, Ganapathi, Moy, Chueh and Onori, Nature Energy 10, 172-180 (2025), from the data and code the authors released (dataset doi.org/10.25740/td676xr4322, CC BY 4.0).
 
 **8.7 %**: the 95th percentile of the lifetime difference between duplicate cells at 90 % SOH (percentile bootstrap over pairs, 5.7 to 13.9 %).
 
 **4.1 %**: the median shortfall of the worst of eight nominally identical cells below the module mean lifetime, by selection alone, at 90 % SOH (2.8 to 5.6 %).
 
-![Figure](results/pilot_a_floor.png)
+![Figure](results/lifetime_floor.png)
 
 (a) Cumulative distribution of the relative difference in EFC to 90 % and 85 % SOH between the two cells of each duplicate pair; the vertical line marks the 5 % bound the paper states for the average. (b) Shortfall of the worst of N identical cells below the module mean at 90 % SOH by selection alone, resampling the 90 measured pair deviations (blue) or drawing from a normal model with the fitted sigma (gray).
 

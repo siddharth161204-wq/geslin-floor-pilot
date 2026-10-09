@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Synthetic check of pilot_a_floor.py, run before the real analysis.
+Synthetic check of lifetime_floor.py, run before the real analysis.
 
 It keeps the real experimental design (the 92 cells and 47 protocols of data/metadata.pkl) and
 replaces every capacity trajectory with a synthetic one whose per-cell lifetime noise is known,
-then runs pilot_a_floor.py on that folder and checks that the script recovers what was put in:
+then runs lifetime_floor.py on that folder and checks that the script recovers what was put in:
 
   1. the per-cell noise sigma (true value 3 %, plus a small known contribution from capacity
      measurement noise), within the sampling band that 45 pairs allow;
@@ -32,9 +32,9 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SCRIPT = os.path.join(HERE, os.pardir, "pilot_a_floor.py")
+SCRIPT = os.path.join(HERE, os.pardir, "lifetime_floor.py")
 sys.path.insert(0, os.path.join(HERE, os.pardir))
-import pilot_a_floor as paf  # noqa: E402
+import lifetime_floor as lf  # noqa: E402
 
 SIGMA_TRUE = 0.03       # per-cell relative lifetime noise put into the synthetic data
 NOISE_Q = 0.0008        # capacity measurement noise (fraction of initial capacity)
@@ -82,7 +82,7 @@ def synthesise(meta, rng):
         for k, e, v in zip(cycles, efc, q):
             rows.append((cell, float(k), float(v), float(e)))
         eol[cell] = l90 + 0.6      # what a perfect paper-side lifetime at 90 % would be, roughly
-    dfa = pd.DataFrame(rows, columns=["Cell", "Cycle", paf.CAPA, paf.EFC]).set_index(["Cell", "Cycle"])
+    dfa = pd.DataFrame(rows, columns=["Cell", "Cycle", lf.CAPA, lf.EFC]).set_index(["Cell", "Cycle"])
     em = pd.DataFrame({"EFCs (with Diagnostic)": pd.Series(eol)})
     return dfa, em
 
@@ -93,8 +93,8 @@ def main():
     ap.add_argument("--keep", default=None, help="keep the synthetic folder and results here")
     args = ap.parse_args()
     rng = np.random.default_rng(12345)
-    meta = paf.read_pickle(os.path.join(args.data, "metadata.pkl"))
-    work = args.keep or tempfile.mkdtemp(prefix="pilot_a_synthetic_")
+    meta = lf.read_pickle(os.path.join(args.data, "metadata.pkl"))
+    work = args.keep or tempfile.mkdtemp(prefix="lifetime_floor_synthetic_")
     syn = os.path.join(work, "data")
     out = os.path.join(work, "results")
     os.makedirs(syn, exist_ok=True)
@@ -127,7 +127,7 @@ def main():
         with open(path, "wb") as f:
             f.write(pickle.dumps(_Evil(fn, arg)))
         try:
-            paf.read_pickle(path)
+            lf.read_pickle(path)
             refused.append(False)
         except pickle.UnpicklingError:
             refused.append(True)
@@ -149,7 +149,7 @@ def main():
         check(f"normal-model worst-of-{n} median equals {mult} sigma", abs(got / mult - 1) < 0.02, f"{got:.4f} sigma")
     pt = pd.read_csv(os.path.join(out, "pair_differences.csv"))
     d = pt.loc[np.isclose(pt["threshold"], 0.90), "delta_rel"].to_numpy()
-    pool = paf.deviation_pool(d)
+    pool = lf.deviation_pool(d)
     check("pool variance equals mean(delta^2)/2", abs(np.mean(pool ** 2) / (np.mean(d ** 2) / 2) - 1) < 1e-12,
           f"{np.mean(pool ** 2):.3e} vs {np.mean(d ** 2) / 2:.3e}")
     share = r["A5_variance_split"]["soh0.900"]["within_pair_variance_share"]
@@ -166,7 +166,7 @@ def main():
     nonmono = []
     for cell in meta["cell_name"]:
         sub = dfa.loc[cell]
-        e, q = paf.notebook_filter(np.asarray(sub[paf.EFC]), np.asarray(sub[paf.CAPA]))
+        e, q = lf.notebook_filter(np.asarray(sub[lf.EFC]), np.asarray(sub[lf.CAPA]))
         if np.any(np.diff(q) > 0):
             nonmono.append(cell)
     differing = set()
@@ -179,14 +179,14 @@ def main():
             unexplained.append(prot)
     prot77 = meta.loc[meta["cell_name"] == "cell_077", "protocol_name"].iloc[0]
     sub = dfa.loc["cell_077"]
-    e77, q77 = np.asarray(sub[paf.EFC], float), np.asarray(sub[paf.CAPA], float)
+    e77, q77 = np.asarray(sub[lf.EFC], float), np.asarray(sub[lf.CAPA], float)
     # The notebook evaluates the whole SOH grid in one vectorised np.interp call; on a non-monotone
     # curve the interval numpy's search lands in can depend on the previous grid point, so the
     # comparison is made the notebook's way.
     grid = np.linspace(1, 0.85, 31)
     pick = [20, 25, 30]                                    # 0.90, 0.875, 0.85
-    em_, qm_ = paf.monotone_filter(e77, q77)
-    en_, qn_ = paf.notebook_filter(e77, q77)
+    em_, qm_ = lf.monotone_filter(e77, q77)
+    en_, qn_ = lf.notebook_filter(e77, q77)
     l_mono = np.interp(grid * qm_[0], np.flip(qm_), np.flip(em_), left=np.nan, right=np.nan)[pick]
     l_nb = np.interp(grid * qn_[0], np.flip(qn_), np.flip(en_), left=np.nan, right=np.nan)[pick]
     gap = np.nanmax(np.abs(l_mono - l_nb) / l_mono)
@@ -195,7 +195,7 @@ def main():
     check("filters disagree only in pairs with a non-monotone notebook curve, and the injected pair is flagged",
           not unexplained and prot77 in differing and sorted(nonmono) == ["cell_077", "cell_085"],
           f"non-monotone: {sorted(nonmono)}; pairs differing: {sorted(differing)}; unexplained: {unexplained}")
-    check("figure written", os.path.exists(os.path.join(out, "pilot_a_floor.png")), "pilot_a_floor.png")
+    check("figure written", os.path.exists(os.path.join(out, "lifetime_floor.png")), "lifetime_floor.png")
 
     width = max(len(c[0]) for c in checks)
     for name, ok_, detail in checks:

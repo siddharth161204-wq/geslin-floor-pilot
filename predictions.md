@@ -1,6 +1,6 @@
-# Predictions for Pilot A, written before the analysis ran
+# Predictions, written before the analysis ran
 
-Siddharth Satte, 7 October 2026. This file was committed before `pilot_a_floor.py` was run on the data for results. The commit that adds it is recorded in README.md and tagged `pre-registration`. The analysis script in that commit is the one that produces the results.
+Siddharth Satte, 7 October 2026. This file was committed before the analysis script was run on the data for results. The commit that adds it is recorded in README.md and tagged `pre-registration`. The analysis script in that commit is the one that produces the results.
 
 ## What had been seen when these predictions were written
 
@@ -41,7 +41,7 @@ The 45 pairs pool 47 protocols whose per-cell noise need not be equal, and a mix
 ## Fixed before the run, with no prediction attached
 
 1. Primary processing: the monotone filter. Sensitivity S1 reproduces the paper notebook's processing exactly (single-pass filter, one vectorised interpolation over its SOH grid, EFC rounded to 0.1). Sensitivity S2 leaves out the two C/16 drive protocols (cells 089, 090, 093 and 094), which the paper excluded from its analyses because they did not reach the lower cut-off voltage. Sensitivity S3 is the authors' analysis set: S2 plus the Periodic C pair at C/2, because their figure3.ipynb drops cell_045; this pair also has the largest gap in measured average C-rate in the design (0.611 against 0.599 per hour). The scorecard uses the primary analysis only.
-2. Gates on this pilot's processing, checked before any result is interpreted: 45 pairs at 90 % and 43 at 85 % SOH, and the primary pair differences equal the notebook's (within 0.001) for every pair without cell_077 or cell_085. If either fails, the processing is reconciled first and the reconciliation is recorded in the README as a deviation from this plan.
+2. Gates on the processing, checked before any result is interpreted: 45 pairs at 90 % and 43 at 85 % SOH, and the primary pair differences equal the notebook's (within 0.001) for every pair without cell_077 or cell_085. If either fails, the processing is reconciled first and the reconciliation is recorded in the README as a deviation from this plan.
 3. Checks reported as found, which do not change the processing whatever they show: the paper's Fig. 2c group averages recomputed with its own notebook logic, and whether all are below 5 %; whether the within-pair variance share is smaller than the between-protocol share.
 4. Headline numbers: the 95th percentile of the pair difference at 90 % SOH and the median resampled worst-of-8 shortfall at 90 % SOH, each with a percentile-bootstrap interval over pairs (indicative only for the 95th percentile, whose upper limit cannot exceed the largest observed pair).
 5. The inputs are checked against the released files by SHA-256 before anything is unpickled.
